@@ -12,3 +12,6 @@ config/config.h
 .DS_Store
 Thumbs.db
 .~lock.*.xlsx#
+
+# Claude Code
+CLAUDE.md
