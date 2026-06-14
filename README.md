@@ -8,11 +8,11 @@ Intended for permanent outdoor deployment in a raised garden bed — no grid pow
 
 | Component | Selection |
 |-----------|-----------|
-| Microcontroller | ESP32 |
+| Microcontroller | ESP32-WROOM-32 (ESP32-D0WD-V3 rev 3.1) |
 | Sensor | Capacitive moisture module v1.2 (MOSFET-switched) |
 | Solar panel | 6V 3W 500mA |
 | Battery | 3.7V 18650 3400mAh |
-| Charging IC | CN3065 solar LiPo charger module |
+| Charging IC | TP4056 with DW01A protection module (Type-C input) |
 | Enclosure | IP65-rated junction box |
 
 ## Key Design Decisions
@@ -24,28 +24,37 @@ Intended for permanent outdoor deployment in a raised garden bed — no grid pow
 
 ## Project Status
 
-Firmware in development. See [`docs/`](docs/) for full project documentation.
+Firmware complete. Bench-tested; pending outdoor deployment.
 
 ## Repository Structure
 
 ```
-firmware/         — Arduino sketches (production + test suites)
-libraries/        — Custom SoilSensor library
-config/           — config_template.h (copy to config.h and fill in credentials)
+firmware/
+  soil_moisture_monitor_production/  — production firmware
+  tests/                             — test sketches (T-001 through T-008)
+libraries/
+  SoilSensor/                        — custom SoilSensor library
+config/
+  config_template.h                  — copy to config.h and fill in credentials
 docs/
-  charter/        — Project charter
-  decisions/      — Decision log
-  specs/          — Technical specification
-  bom/            — Bill of materials
-  research/       — Component notes
-  schematics/     — (placeholder)
+  charter/                           — project charter
+  decisions/                         — decision log
+  specs/                             — technical specification
+  bom/                               — bill of materials
+  schematics/                        — circuit schematics (SVG)
+  datasheets/                        — component datasheets
+  research/                          — component notes
 ```
 
 ## Getting Started
 
-1. Copy `config/config_template.h` to `config/config.h`
+1. Copy `config/config_template.h` to `firmware/soil_moisture_monitor_production/config.h`
 2. Fill in your Wi-Fi credentials and Discord webhook URL
-3. Open `firmware/production/production.ino` in Arduino IDE or PlatformIO
-4. Flash to ESP32
+3. Open `firmware/soil_moisture_monitor_production/soil_moisture_monitor_production.ino` in Arduino IDE
+4. Flash to ESP32-WROOM-32
 
-> `config/config.h` is gitignored — never commit credentials.
+> `config.h` is gitignored — never commit credentials.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
